@@ -70,7 +70,7 @@ export default function NeonAdapter(client: Pool): NeonAdapter {
 			const { name, email, emailVerified, image } = user;
 			const sql = `
         INSERT INTO auth_users (name, email, "emailVerified", image)
-        VALUES ($1, $2, $3, $4)
+        VALUES (Rs 1, Rs 2,Rs3, Rs4)
         RETURNING id, name, email, "emailVerified", image`;
 			const result = await client.query(sql, [
 				name,
