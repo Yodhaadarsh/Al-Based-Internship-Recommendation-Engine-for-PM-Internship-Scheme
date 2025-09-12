@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PM Internship Yojna — Apply Now</title>
+  <meta name="description" content="Official-looking demo site for PM Internship Yojna. Apply, check eligibility, FAQs and contact." />
+  <style>
+    /* Simple modern responsive CSS (no frameworks) */
+    :root{
+      --accent:#0f62fe;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#f6f8fb;
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#0f1724;line-height:1.45}
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:700}
+    nav a{margin-left:16px;text-decoration:none;color:var(--muted);font-weight:600}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin:28px 0}
+    .hero-card{background:var(--card);border-radius:12px;padding:26px;box-shadow:0 6px 24px rgba(15,22,36,0.06)}
+    .h-title{font-size:28px;margin:0 0 8px}
+    .h-lead{color:var(--muted);margin:0 0 18px}
+    .cta-row{display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
+
+    .stats{display:flex;gap:12px;margin-top:14px}
+    .stat{background:linear-gradient(180deg,rgba(15,98,254,0.06),transparent);padding:10px;border-radius:10px}
+    .stat strong{display:block;font-size:18px}
+
+    /* cards grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(12,18,34,0.04)}
+    .small{font-size:14px;color:var(--muted)}
+
+    section{margin:36px 0}
+    h2{margin:0 0 12px}
+
+    /* form */
+    form{display:grid;gap:12px}
+    label{font-weight:600;font-size:14px}
+    input[type=text],input[type=email],select,textarea{padding:10px;border-radius:8px;border:1px solid #e6eefc;background:white}
+    input[type=file]{padding:6px}
+    textarea{min-height:120px}
+
+    footer{text-align:center;padding:24px;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media(max-width:920px){
+      .hero{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+    /* small helpers */
+    .pill{display:inline-block;background:#eef6ff;padding:6px 10px;border-radius:999px;font-weight:700;color:var(--accent)}
+    .faq-item{margin-bottom:12px}
+    .flex{display:flex;gap:12px;align-items:center}
+    .center{display:grid;place-items:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">PM</div>
+        <div>
+          <div style="font-weight:800">PM Internship Yojna</div>
+          <div style="font-size:12px;color:var(--muted)">Skill · Opportunity · Nation</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#eligibility">Eligibility</a>
+        <a href="#apply">Apply</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-card">
+          <h1 class="h-title">Official Internship program for students & graduates</h1>
+          <p class="h-lead">Gain hands-on experience, mentorship and a monthly stipend. Apply online for short-term internships across government departments and affiliated organizations.</p>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Apply Now</button>
+            <button class="btn btn-ghost" onclick="alert('Download brochure coming soon')">Download Brochure</button>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><strong id="stat-open">1,250+</strong><span class="small">Open Positions</span></div>
+            <div class="stat"><strong id="stat-mentors">320+</strong><span class="small">Mentors</span></div>
+            <div class="stat"><strong id="stat-stipend">₹5,000+</strong><span class="small">Average Stipend</span></div>
+          </div>
+
+          <div class="grid" style="margin-top:18px">
+            <div class="card">
+              <strong>Duration</strong>
+              <p class="small">1 - 6 months (flexible based on department)</p>
+            </div>
+            <div class="card">
+              <strong>Mode</strong>
+              <p class="small">On-site & Remote options</p>
+            </div>
+            <div class="card">
+              <strong>Certificate</strong>
+              <p class="small">Certificate on completion</p>
+            </div>
+          </div>
+        </div>
+
+        <aside style="align-self:start">
+          <div class="hero-card">
+            <div style="font-size:14px;color:var(--muted)">Quick apply</div>
+            <form id="quickApply" onsubmit="submitQuick(event)">
+              <label for="qname">Full name</label>
+              <input id="qname" type="text" required placeholder="e.g. Lucky Patel" />
+              <label for="qemail">Email</label>
+              <input id="qemail" type="email" required placeholder="name@example.com" />
+              <label for="qcourse">Current study / role</label>
+              <input id="qcourse" type="text" placeholder="e.g. MCA student" />
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <div style="margin-top:10px;font-size:13px;color:var(--muted)">We only store data locally in this demo. Replace with backend to accept real applications.</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="card">
+          <h2>About PM Internship Yojna</h2>
+          <p class="small">PM Internship Yojna is a national-level internship initiative designed to connect students and fresh graduates with meaningful internships across government bodies, research institutions, and partner organizations. The program focuses on capacity building, mentorship and practical exposure to public administration and applied projects.</p>
+        </div>
+      </section>
+
+      <section id="eligibility">
+        <h2>Eligibility & Selection</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Who can apply?</strong>
+            <p class="small">Undergraduate & postgraduate students, recent graduates (within 2 years), and early-career professionals.</p>
+          </div>
+          <div class="card">
+            <strong>Documents</strong>
+            <p class="small">Resume, student ID (if applicable), one recommendation or academic transcript.</p>
+          </div>
+          <div class="card">
+            <strong>Selection Process</strong>
+            <p class="small">Shortlisting → Interview (virtual/on-site) → Offer letter</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="apply">
+        <h2>Apply — Full Application</h2>
+        <div class="card">
+          <form id="applyForm" onsubmit="handleApply(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px">
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="text" />
+              </div>
+              <div>
+                <label for="university">Institution / Organization</label>
+                <input id="university" name="university" type="text" />
+              </div>
+            </div>
+            <div style="margin-top:6px">
+              <label for="profile">Profile you want to apply for</label>
+              <select id="profile" name="profile">
+                <option>Research Intern</option>
+                <option>Policy Intern</option>
+                <option>Data / ML Intern</option>
+                <option>Communications</option>
+                <option>IT & Dev</option>
+              </select>
+            </div>
+
+            <div style="margin-top:6px">
+              <label for="resume">Resume (PDF)</label>
+              <input id="resume" name="resume" type="file" accept="application/pdf" />
+            </div>
+
+            <div style="margin-top:6px">
+              <label for="motivation">Why do you want this internship? (short)</label>
+              <textarea id="motivation" name="motivation"></textarea>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:12px">
+              <button class="btn btn-primary" type="submit">Submit Application</button>
+              <button class="btn" type="button" onclick="saveDraft()">Save Draft</button>
+            </div>
+            <div id="applyMsg" style="margin-top:8px;color:var(--muted)"></div>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="card">
+          <div class="faq-item">
+            <strong>Is this paid?</strong>
+            <p class="small">Most internships include a modest stipend; details are specified in each opening.</p>
+          </div>
+          <div class="faq-item">
+            <strong>Can foreign students apply?</strong>
+            <p class="small">Some positions are open to international applicants — check the specific posting.</p>
+          </div>
+          <div class="faq-item">
+            <strong>How long before I hear back?</strong>
+            <p class="small">Shortlisted candidates are usually contacted within 2–4 weeks of application.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact & Support</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Helpdesk</strong>
+            <p class="small">Email: support@pmintern.example | Phone: +91 11111 22222</p>
+          </div>
+          <div class="card">
+            <strong>Office</strong>
+            <p class="small">New Delhi — Administrative Building, 3rd floor</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> PM Internship Yojna — Demo site. Built with ❤️.
+    </footer>
+  </div>
+
+  <script>
+    // small helpers and demo-only behaviours
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function submitQuick(e){
+      e.preventDefault();
+      const name = document.getElementById('qname').value.trim();
+      const email = document.getElementById('qemail').value.trim();
+      if(!name || !email){ alert('Please add name and email'); return; }
+      // demo: store in localStorage
+      const applicants = JSON.parse(localStorage.getItem('pm_applicants') || '[]');
+      applicants.push({name,email,role:document.getElementById('qcourse').value,submittedAt:Date.now()});
+      localStorage.setItem('pm_applicants',JSON.stringify(applicants));
+      alert('Thanks ' + name + '! Quick application saved in this browser (demo).');
+      document.getElementById('quickApply').reset();
+      document.getElementById('stat-open').textContent = applicants.length + 1200;
+    }
+
+    function handleApply(e){
+      e.preventDefault();
+      const form = document.getElementById('applyForm');
+      // very small validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      if(!name || !email){document.getElementById('applyMsg').textContent = 'Name and email are required.'; return}
+
+      // read resume filename only (not upload to server in demo)
+      const resume = document.getElementById('resume').files[0];
+      const payload = {
+        name, email, phone:form.phone.value, institution:form.university.value,
+        profile:form.profile.value, motivation:form.motivation.value, resumeName: resume? resume.name : null,
+        date: new Date().toISOString()
+      };
+      // save locally
+      const apps = JSON.parse(localStorage.getItem('pm_full_apps') || '[]');
+      apps.push(payload);
+      localStorage.setItem('pm_full_apps', JSON.stringify(apps));
+      document.getElementById('applyMsg').textContent = 'Application saved (demo). Replace with a backend to accept real apps.';
+      form.reset();
+      document.getElementById('stat-mentors').textContent = 320 + apps.length;
+    }
+
+    function saveDraft(){
+      const form = document.getElementById('applyForm');
+      const draft = {
+        name: form.name.value, email: form.email.value, phone: form.phone.value,
+        institution: form.university.value, profile: form.profile.value, motivation: form.motivation.value
+      };
+      localStorage.setItem('pm_draft', JSON.stringify(draft));
+      alert('Draft saved in browser');
+    }
+
+    // autofill draft if exists
+    window.addEventListener('load', ()=>{
+      const draft = JSON.parse(localStorage.getItem('pm_draft') || 'null');
+      if(draft){
+        const form = document.getElementById('applyForm');
+        form.name.value = draft.name || '';
+        form.email.value = draft.email || '';
+        form.phone.value = draft.phone || '';
+        form.university.value = draft.institution || '';
+        form.profile.value = draft.profile || 'Research Intern';
+        form.motivation.value = draft.motivation || '';
+      }
+      // basic demo stats update
+      const apps = JSON.parse(localStorage.getItem('pm_full_apps') || '[]');
+      document.getElementById('stat-open').textContent = 1200 + apps.length;
+      document.getElementById('stat-mentors').textContent = 320 + apps.length;
+    });
+  </script>
+</body>
+</html>
