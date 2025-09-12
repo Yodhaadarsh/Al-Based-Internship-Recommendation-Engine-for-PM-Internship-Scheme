@@ -11,7 +11,7 @@ interface NeonUser extends AdapterUser {
 	accounts: {
 		provider: string;
 		provider_account_id: string;
-		password?: string;
+		password?: string; jhfjck4r
 	}[];
 }
 
