@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PM Internship Yojna — Apply Now</title>
+  <meta name="description" content="Official-looking demo site for PM Internship Yojna. Apply, check eligibility, FAQs and contact." />
+  <style>
+    /* Simple modern responsive CSS (no frameworks) */
+    :root{
+      --accent:#0f62fe;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --bg:#f6f8fb;
+      --glass: rgba(255,255,255,0.6);
+      --maxw:1100px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#0f1724;line-height:1.45
+    }
+    
+    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:18px;height:18px;border-radius:8px;background:url("/Users/anushkaverma/Desktop/images/logo 2.jpg");display:grid;place-items:center;color:#fff;font-weight:700}
+    .logo img{
+      width: 30px;
+      height: 36px;
+    }
+    nav a{margin-left:16px;text-decoration:none;color:var(--muted);font-weight:600}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin:28px 0}
+    .hero-card{background:var();border-radius:12px;padding:26px;box-shadow:0 6px 24px rgba(15,22,36,0.06)
+    
+  position: relative;   /* allow absolute positioning */
+  overflow: hidden;     /* prevent image from overflowing */
+    }
+
+.hero-card img {
+  position: absolute;   /* place image behind text */
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 88%;
+  object-fit: cover;    /* make image cover the box */
+  opacity: 0.3;         /* 👈 reduce only image opacity */
+  z-index: 0;           /* put it in background */
+}
+
+.hero-card > *:not(img) {
+  position: relative;
+  z-index: 1;           /* keep text above image */
+}
+
+  
+
+
+    .h-title{font-size:28px;margin:0 0 8px
+    
+  }
+    .h-lead{color:var(--muted);margin:0 0 18px}
+    .cta-row{display:flex;gap:12px}
+    .btn{padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
+
+    .stats{display:flex;gap:12px;margin-top:14px}
+    .stat{background:linear-gradient(180deg,rgba(15,98,254,0.06),transparent);padding:10px;border-radius:10px}
+    .stat strong{display:block;font-size:18px}
+
+    /* cards grid */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(12,18,34,0.04)}
+    .small{font-size:14px;color:var(--muted)}
+
+    section{margin:36px 0}
+    h2{margin:0 0 12px}
+
+    /* form */
+    form{display:grid;gap:12px}
+    label{font-weight:600;font-size:14px}
+    input[type=text],input[type=email],select,textarea{padding:10px;border-radius:8px;border:1px solid #e6eefc;background:white}
+    input[type=file]{padding:6px}
+    textarea{min-height:120px}
+#stars span {
+  font-size: 24px;
+  cursor: pointer;
+  color: #ccc;
+}
+#stars span.active {
+  color: gold;
+}
+
+    footer{text-align:center;padding:24px;color:var(--muted);font-size:14px}
+
+    /* responsive */
+    @media(max-width:920px){
+      .hero{grid-template-columns:1fr}
+      nav{display:none}
+    }
+
+    /* small helpers */
+    .pill{display:inline-block;background:#eef6ff;padding:6px 10px;border-radius:999px;font-weight:700;color:var(--accent)}
+    .faq-item{margin-bottom:12px}
+    .flex{display:flex;gap:12px;align-items:center}
+    .center{display:grid;place-items:center}
+
+    /* Chatbot floating button */
+#chatbot-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+/* Chatbot box */
+#chatbot-box {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  max-height: 400px;
+  display: none;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.chat-header {
+  background: var(--accent);
+  color: white;
+  padding: 10px;
+  border-radius: 12px 12px 0 0;
+  font-weight: 600;
+}
+
+.chat-body {
+  padding: 10px;
+  flex: 1;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.chat-input button {
+  background: var(--accent);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 0 0 12px 0;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <img height=28px width=
+          "26px" src="/Users/anushkaverma/Desktop/images/logo 2.jpg">
+        </div>
+        <div>
+          <div style="font-weight:800">PM Internship Yojna</div>
+          <div style="font-size:12px;color:var(--muted)">Skill · Opportunity · Nation</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#eligibility">Eligibility</a>
+        <a href="#apply">Apply</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        
+        <div class="hero-card">
+            <img src="/Users/anushkaverma/Desktop/images/bag.jpeg" alt="background">
+
+          <h1 class="h-title">Official Internship program for students & graduates</h1>
+          <p class="h-lead">Gain hands-on experience, mentorship and a monthly stipend. Apply online for short-term internships across government departments and affiliated organizations.</p>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Apply Now</button>
+            <button class="btn btn-ghost" onclick="alert('Download brochure coming soon')">Download Brochure</button>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><strong id="stat-open">1,250+</strong><span class="small">Open Positions</span></div>
+            <div class="stat"><strong id="stat-mentors">320+</strong><span class="small">Mentors</span></div>
+            <div class="stat"><strong id="stat-stipend">₹5,000+</strong><span class="small">Average Stipend</span></div>
+          </div>
+
+          <div class="grid" style="margin-top:18px">
+            <div class="card">
+              <strong>Duration</strong>
+              <p class="small">1 - 5 months (flexible based on department)</p>
+            </div>
+            <div class="card">
+              <strong>Mode</strong>
+              <p class="small">On-site & Remote options</p>
+            </div>
+            <div class="card">
+              <strong>Certificate</strong>
+              <p class="small">Certificate on completion</p>
+            </div>
+          </div>
+        </div>
+
+        <aside style="align-self:start">
+          <div class="hero-card">
+            <div style="font-size:14px;color:var(--muted)">Quick apply</div>
+            <form id="quickApply" onsubmit="submitQuick(event)">
+              <label for="qname">Full name</label>
+              <input id="qname" type="text" required placeholder="e.g. Lucky Patel" />
+              <label for="qemail">Email</label>
+              <input id="qemail" type="email" required placeholder="name@example.com" />
+              <label for="qcourse">Current study / role</label>
+              <input id="qcourse" type="text" placeholder="e.g. MCA student" />
+              <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
+            <div style="margin-top:10px;font-size:13px;color:var(--muted)">We only store data locally in this demo. Replace with backend to accept real applications.</div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="card">
+          <h2>About PM Internship Yojna</h2>
+          <p class="small">PM Internship Yojna is a national-level internship initiative designed to connect students and fresh graduates with meaningful internships across government bodies, research institutions, and partner organizations. The program focuses on capacity building, mentorship and practical exposure to public administration and applied projects.</p>
+        </div>
+      </section>
+
+      <section id="eligibility">
+        <h2>Eligibility & Selection</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Who can apply?</strong>
+            <p class="small">Undergraduate & postgraduate students, recent graduates (within 2 years), and early-career professionals.</p>
+          </div>
+          <div class="card">
+            <strong>Documents</strong>
+            <p class="small">Resume, student ID (if applicable), one recommendation or academic transcript.</p>
+          </div>
+          <div class="card">
+            <strong>Selection Process</strong>
+            <p class="small">Shortlisting → Interview (virtual/on-site) → Offer letter</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="apply">
+        <h2>Apply — Full Application</h2>
+        <div class="card">
+          <form id="applyForm" onsubmit="handleApply(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <div>
+                <label for="name">Full name</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px">
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="text" />
+              </div>
+              <div>
+                <label for="university">Institution / Organization</label>
+                <input id="university" name="university" type="text" />
+              </div>
+            </div>
+            <div style="margin-top:6px">
+              <label for="profile">Profile you want to apply for</label>
+              <select id="profile" name="profile">
+                <option>Research Intern</option>
+                <option>Policy Intern</option>
+                <option>Data / ML Intern</option>
+                <option>Communications</option>
+                <option>IT & Dev</option>
+              </select>
+            </div>
+
+            <div style="margin-top:6px">
+              <label for="resume">Resume (PDF)</label>
+              <input id="resume" name="resume" type="file" accept="application/pdf" />
+            </div>
+
+            <div style="margin-top:6px">
+              <label for="motivation">Why do you want this internship? (short)</label>
+              <textarea id="motivation" name="motivation"></textarea>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-top:12px">
+              <button class="btn btn-primary" type="submit">Submit Application</button>
+              <button class="btn" type="button" onclick="saveDraft()">Save Draft</button>
+            </div>
+            <div id="applyMsg" style="margin-top:8px;color:var(--muted)"></div>
+          </form>
+        </div>
+      </section>
+
+      <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="card">
+          <div class="faq-item">
+            <strong>Is this paid?</strong>
+            <p class="small">Most internships include a modest stipend; details are specified in each opening.</p>
+          </div>
+          <div class="faq-item">
+            <strong>Can foreign students apply?</strong>
+            <p class="small">Some positions are open to international applicants — check the specific posting.</p>
+          </div>
+          <div class="faq-item">
+            <strong>How long before I hear back?</strong>
+            <p class="small">Shortlisted candidates are usually contacted within 2–4 weeks of application.</p>
+          </div>
+        </div>
+      </section>
+      <section id="feedback">
+  <h2>We value your Feedback</h2>
+  <div class="card">
+    <form id="feedbackForm" onsubmit="submitFeedback(event)">
+      <div style="display:grid;gap:12px">
+        <div>
+          <label for="fname">Your Name</label>
+          <input id="fname" type="text" placeholder="e.g. Anushka Verma" required>
+        </div>
+        <div>
+          <label for="femail">Email</label>
+          <input id="femail" type="email" placeholder="name@example.com" required>
+        </div>
+        <div>
+          <label for="fmsg">Your Feedback</label>
+          <textarea id="fmsg" placeholder="Share your thoughts..." required></textarea>
+        </div>
+        <div>
+          <label>Rate Us:</label>
+          <div style="font-size:22px;color:gold;cursor:pointer" id="stars">
+            ★★★★★
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit Feedback</button>
+      </div>
+      <div id="fmsgBox" style="margin-top:8px;color:var(--muted)"></div>
+    </form>
+  </div>
+</section>
+
+
+      <section id="contact">
+        <h2>Contact & Support</h2>
+        <div class="grid">
+          <div class="card">
+            <strong>Helpdesk</strong>
+            <p class="small">Email: support@pmintern.example | Phone: +91 11111 22222</p>
+          </div>
+          <div class="card">
+            <strong>Office</strong>
+            <p class="small">New Delhi — Administrative Building, 3rd floor</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> PM Internship Yojna — Demo site. Built with ❤️.
+    </footer>
+  </div>
+<!-- Chatbot Floating Button -->
+<div id="chatbot-btn">💬</div>
+
+<!-- Chatbot Box -->
+<div id="chatbot-box">
+  <div class="chat-header">PM Internship Assistant</div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Ask your query...">
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+  <script>
+    // small helpers and demo-only behaviours
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function submitQuick(e){
+      e.preventDefault();
+      const name = document.getElementById('qname').value.trim();
+      const email = document.getElementById('qemail').value.trim();
+      if(!name || !email){ alert('Please add name and email'); return; }
+      // demo: store in localStorage
+      const applicants = JSON.parse(localStorage.getItem('pm_applicants') || '[]');
+      applicants.push({name,email,role:document.getElementById('qcourse').value,submittedAt:Date.now()});
+      localStorage.setItem('pm_applicants',JSON.stringify(applicants));
+      alert('Thanks ' + name + '! Quick application saved in this browser (demo).');
+      document.getElementById('quickApply').reset();
+      document.getElementById('stat-open').textContent = applicants.length + 1200;
+    }
+
+    function handleApply(e){
+      e.preventDefault();
+      const form = document.getElementById('applyForm');
+      // very small validation
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      if(!name || !email){document.getElementById('applyMsg').textContent = 'Name and email are required.'; return}
+
+      // read resume filename only (not upload to server in demo)
+      const resume = document.getElementById('resume').files[0];
+      const payload = {
+        name, email, phone:form.phone.value, institution:form.university.value,
+        profile:form.profile.value, motivation:form.motivation.value, resumeName: resume? resume.name : null,
+        date: new Date().toISOString()
+      };
+      // save locally
+      const apps = JSON.parse(localStorage.getItem('pm_full_apps') || '[]');
+      apps.push(payload);
+      localStorage.setItem('pm_full_apps', JSON.stringify(apps));
+      document.getElementById('applyMsg').textContent = 'Application saved (demo). Replace with a backend to accept real apps.';
+      form.reset();
+      document.getElementById('stat-mentors').textContent = 320 + apps.length;
+    }
+
+    function saveDraft(){
+      const form = document.getElementById('applyForm');
+      const draft = {
+        name: form.name.value, email: form.email.value, phone: form.phone.value,
+        institution: form.university.value, profile: form.profile.value, motivation: form.motivation.value
+      };
+      localStorage.setItem('pm_draft', JSON.stringify(draft));
+      alert('Draft saved in browser');
+    }
+
+    // autofill draft if exists
+    window.addEventListener('load', ()=>{
+      const draft = JSON.parse(localStorage.getItem('pm_draft') || 'null');
+      if(draft){
+        const form = document.getElementById('applyForm');
+        form.name.value = draft.name || '';
+        form.email.value = draft.email || '';
+        form.phone.value = draft.phone || '';
+        form.university.value = draft.institution || '';
+        form.profile.value = draft.profile || 'Research Intern';
+        form.motivation.value = draft.motivation || '';
+      }
+      // basic demo stats update
+      const apps = JSON.parse(localStorage.getItem('pm_full_apps') || '[]');
+      document.getElementById('stat-open').textContent = 1200 + apps.length;
+      document.getElementById('stat-mentors').textContent = 320 + apps.length;
+    });
+    let selectedRating = 0;
+
+// handle star rating
+document.addEventListener("DOMContentLoaded", () => {
+  const stars = document.querySelectorAll("#stars");
+  if (stars.length) {
+    stars[0].innerHTML = Array(5).fill().map((_,i)=>`<span data-val="${i+1}">★</span>`).join("");
+    document.querySelectorAll("#stars span").forEach(star => {
+      star.addEventListener("click", () => {
+        selectedRating = star.getAttribute("data-val");
+        document.querySelectorAll("#stars span").forEach(s => s.classList.remove("active"));
+        for (let i=0; i<selectedRating; i++) {
+          document.querySelectorAll("#stars span")[i].classList.add("active");
+        }
+      });
+    });
+  }
+});
+
+function submitFeedback(e) {
+  e.preventDefault();
+  const name = document.getElementById("fname").value.trim();
+  const email = document.getElementById("femail").value.trim();
+  const msg = document.getElementById("fmsg").value.trim();
+
+  if (!name || !email || !msg) {
+    document.getElementById("fmsgBox").textContent = "All fields are required.";
+    return;
+  }
+
+  const feedbacks = JSON.parse(localStorage.getItem("pm_feedbacks") || "[]");
+  feedbacks.push({ name, email, msg, rating: selectedRating, date: new Date().toISOString() });
+  localStorage.setItem("pm_feedbacks", JSON.stringify(feedbacks));
+
+  document.getElementById("fmsgBox").textContent = "Thank you! Your feedback is saved.";
+  document.getElementById("feedbackForm").reset();
+  selectedRating = 0;
+  document.querySelectorAll("#stars span").forEach(s => s.classList.remove("active"));
+}
+// Chatbot toggle
+const chatbotBtn = document.getElementById("chatbot-btn");
+const chatbotBox = document.getElementById("chatbot-box");
+chatbotBtn.addEventListener("click", () => {
+  chatbotBox.style.display = chatbotBox.style.display === "flex" ? "none" : "flex";
+});
+
+// Handle sending messages
+const sendBtn = document.getElementById("sendBtn");
+const chatInput = document.getElementById("chatInput");
+const chatBody = document.getElementById("chatBody");
+
+sendBtn.addEventListener("click", sendMessage);
+chatInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") sendMessage();
+});
+
+function sendMessage() {
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+
+  addMessage("You", msg);
+  chatInput.value = "";
+
+  setTimeout(() => {
+    addMessage("Bot", getBotReply(msg));
+  }, 500);
+}
+
+function addMessage(sender, text) {
+  const div = document.createElement("div");
+  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+// Basic chatbot replies
+function getBotReply(msg) {
+  msg = msg.toLowerCase();
+
+  if (msg.includes("apply")) return "You can apply by filling the form in the 'Apply' section.";
+  if (msg.includes("eligibility")) return "Eligibility: Students, fresh graduates (within 2 years), and early-career professionals.";
+  if (msg.includes("stipend")) return "Most internships provide a stipend of ₹5,000 or more.";
+  if (msg.includes("certificate")) return "Yes, you will receive a certificate upon successful completion.";
+  if (msg.includes("contact")) return "You can reach us at support@pmintern.example or +91 11111 22222.";
+  
+  return "Sorry, I didn’t understand that. Please check FAQ or contact support.";
+}
+function getBotReply(msg) {
+  msg = msg.toLowerCase();
+
+  // Application & General
+  if (msg.includes("apply")) return "👉 You can apply by filling the form in the 'Apply' section.";
+  if (msg.includes("eligibility")) return "✅ Eligibility: Students, fresh graduates (within 2 years), and early-career professionals.";
+  if (msg.includes("stipend")) return "💰 Most internships provide a stipend of ₹5,000 or more.";
+  if (msg.includes("certificate")) return "📜 Yes, you will receive a certificate upon successful completion.";
+  if (msg.includes("contact")) return "📩 You can reach us at support@pmintern.example or +91 11111 22222.";
+
+  // Skill-based Guidance
+  if (msg.includes("python")) {
+    return `🐍 It seems you want to learn Python.  
+Here are some recommended courses:  
+- [Coursera Python for Everybody](https://www.coursera.org/specializations/python)  
+- [NPTEL Python Programming](https://nptel.ac.in/courses/106/106/106106145)`;
+  }
+
+  if (msg.includes("data science") || msg.includes("ml") || msg.includes("ai")) {
+    return `🤖 To strengthen Data Science/ML skills:  
+- [Coursera Machine Learning by Andrew Ng](https://www.coursera.org/learn/machine-learning)  
+- [NPTEL Introduction to Machine Learning](https://nptel.ac.in/courses/106/106/106106202)`;
+  }
+
+  if (msg.includes("frontend") || msg.includes("web")) {
+    return `🌐 For Web Development / Frontend skills:  
+- [freeCodeCamp Web Development](https://www.freecodecamp.org/learn/)  
+- [Coursera HTML, CSS, JS for Web Developers](https://www.coursera.org/learn/html-css-javascript-for-web-developers)`;
+  }
+
+  if (msg.includes("communication")) {
+    return `🗣️ To improve Communication Skills:  
+- [Coursera Improve Communication Skills](https://www.coursera.org/specializations/improve-communication)  
+- [edX Business Communications](https://www.edx.org/course/business-communications)`;
+  }
+
+  return "🤔 Sorry, I didn’t understand that. Please ask about eligibility, stipend, or skills you want to improve.";
+}
+function addMessage(sender, text) {
+  const div = document.createElement("div");
+  div.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+
+  </script>
+</body>
+</html>
